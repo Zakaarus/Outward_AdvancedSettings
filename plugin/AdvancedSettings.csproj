@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<PostBuildEvent>modpacker.py local</PostBuildEvent>
+		<!-- <PostBuildEvent>modpacker.py local</PostBuildEvent> -->
 	</PropertyGroup>
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
