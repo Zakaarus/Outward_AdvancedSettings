@@ -9,7 +9,7 @@ namespace AdvancedSettings.Patches {
 			if (OptionManager.Instance == null || !OptionManager.Instance.OptionsLoaded) {
 				return;
 			}
-			if (AdvancedSettings.EnableTAA.Value && __instance.m_profile) {
+			if (AdvancedSettings.EnableTAA.Value) {
 				__instance.GetComponent<PostProcessLayer>().antialiasingMode = OptionManager.Instance.CurrentGraphicSettings.AntiAliasingQuality == 0 ? PostProcessLayer.Antialiasing.None : PostProcessLayer.Antialiasing.TemporalAntialiasing;
 			}
 		}
