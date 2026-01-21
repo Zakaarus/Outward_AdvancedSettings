@@ -8,12 +8,13 @@ namespace AdvancedSettings {
 	public class AdvancedSettings : BaseUnityPlugin {
 		public const string GUID = "faeryn.advancedsettings";
 		public const string NAME = "AdvancedSettings";
-		public const string VERSION = "0.1.0";
+		public const string VERSION = "0.2.0";
 		internal static ManualLogSource Log;
 		
 		public static ConfigEntry<string> AAType;
+        public static ConfigEntry<int> MSAA;
 
-		internal void Awake() {
+        internal void Awake() {
 			Log = this.Logger;
 			Log.LogMessage($"Starting {NAME} {VERSION}");
 			InitializeConfig();
@@ -21,10 +22,14 @@ namespace AdvancedSettings {
 		}
 
 		private void InitializeConfig() {
-			AAType = Config.Bind("AdvancedSettings", "Enable Temporal Antialiasing", "None", "Changes the antialiasing mode to TAA. Note: It only takes effect if Antialiasing is enabled in the Settings menu.");
+			AAType = Config.Bind("AdvancedSettings", "Antialiasing", "None", "Changes the antialiasing mode. None, FXAA, SMAA, TAA");
 			AAType.SettingChanged += (sender, args) => {
 				CameraQuality.RefreshAllCameras();
 			};
-		}
+			MSAA = Config.Bind("AdvancedSettings", "MSAA", 8, "MSAA quality. 0, 2, 4, 8. Don't think it does anything lmao");
+			MSAA.SettingChanged += (sender, args) => {
+                CameraQuality.RefreshAllCameras();
+            };
+        }
 	}
 }
