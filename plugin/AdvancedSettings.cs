@@ -11,7 +11,7 @@ namespace AdvancedSettings {
 		public const string VERSION = "0.1.0";
 		internal static ManualLogSource Log;
 		
-		public static ConfigEntry<bool> EnableTAA;
+		public static ConfigEntry<string> AAType;
 
 		internal void Awake() {
 			Log = this.Logger;
@@ -21,8 +21,8 @@ namespace AdvancedSettings {
 		}
 
 		private void InitializeConfig() {
-			EnableTAA = Config.Bind("AdvancedSettings", "Enable Temporal Antialiasing", true, "Changes the antialiasing mode to TAA. Note: It only takes effect if Antialiasing is enabled in the Settings menu.");
-			EnableTAA.SettingChanged += (sender, args) => {
+			AAType = Config.Bind("AdvancedSettings", "Enable Temporal Antialiasing", "None", "Changes the antialiasing mode to TAA. Note: It only takes effect if Antialiasing is enabled in the Settings menu.");
+			AAType.SettingChanged += (sender, args) => {
 				CameraQuality.RefreshAllCameras();
 			};
 		}
